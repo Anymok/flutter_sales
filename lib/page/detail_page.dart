@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sales/products.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_sales/model/products.dart';
+import 'package:go_router/go_router.dart';
 
 class DetailPage extends StatelessWidget {
   final Products product;
@@ -25,10 +27,14 @@ class DetailPage extends StatelessWidget {
               ),
               Divider(),
               Container(
-                child: Card(
-                  child: ListTile(
-                    title: Container(child: Text("Avis", style: Theme.of(context).textTheme.headline6), padding: EdgeInsets.all(8.0)),
-                    subtitle: Text(product.description),
+                child: InkWell(onTap: () => context.go('/list/detail/avis', extra: product),
+                  child: Card(
+                    child: ListTile(
+                      title: Container(child: Text("Avis", style: Theme.of(context).textTheme.headline6), padding: EdgeInsets.all(8.0)),
+                      subtitle: Center(
+                        child: Text("Cliquez ici pour voir la liste des avis."),
+                      ),
+                    ),
                   ),
                 ), padding: EdgeInsets.all(8.0)
               ),

@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sales/products.dart';
+import 'package:flutter_sales/model/products.dart';
 import 'package:go_router/go_router.dart';
 
-class ListProductPage extends StatelessWidget {
-  const ListProductPage({Key? key}) : super(key: key);
-
-
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final List<Products> lsproducts =  [
+    List<Products> lsProducts = [
       Products(1, "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops", 109.95, "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday", "men's clothing", "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"),
       Products(2, "Mens Casual Premium Slim Fit T-Shirts ", 22.3, "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.", "men's clothing", "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"),
       Products(3, "Mens Cotton Jacket", 55.99, "great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.", "men's clothing", "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg"),
@@ -19,28 +17,18 @@ class ListProductPage extends StatelessWidget {
       Products(7, "White Gold Plated Princess", 9.99, "Classic Created Wedding Engagement Solitaire Diamond Promise Ring for Her. Gifts to spoil your love more for Engagement, Wedding, Anniversary, Valentine's Day...", "jewelery", "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg"),
     ];
     return Scaffold(
-      appBar: AppBar(title: const Text("E-Commerce"), actions: [
-        Container(child: InkWell( onTap: () => context.go('/list/cart'), child: Icon(Icons.shopping_basket)), padding: EdgeInsets.all(15.0))
+      appBar: AppBar(title: Text("Accueil"),),
+      body: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Text(
+            'Article en vedette',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+
+//quentin@0Fc.tech
+
         ],
-      ),
-      body: ListView.builder(
-        itemCount: lsproducts.length,
-        itemBuilder: (context, int index) {
-          return Card(
-            child: InkWell(onTap: () => context.go('/list/detail', extra: lsproducts[index]),
-                child: ListTile(
-                leading: Hero(
-                    tag:lsproducts[index].id,
-                    child: Image.network(lsproducts[index].image, width: 80, height: 80,)),
-                title: Text(lsproducts[index].nom),
-                subtitle: Text("${lsproducts[index].prix} €", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black)),
-                trailing: Icon(Icons.add),)
-            ),
-          )
-         /*   ListTile(
-            title: Text('Item ${index + 1}'),
-          )*/;
-        },
       ),
     );
   }
