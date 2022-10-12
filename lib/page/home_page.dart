@@ -18,18 +18,50 @@ class HomePage extends StatelessWidget {
     ];
     return Scaffold(
       appBar: AppBar(title: Text("Accueil"),),
-      body: Column(
+      body:  Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Text(
-            'Article en vedette',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Text(
+              'Liste des articles en vedette',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemCount: lsProducts.length,
+              itemBuilder: (context, int index) {
+                final Products product = lsProducts[index];
+                return Container(
+                  width: 200,
+                  child: Card(
+                    child: Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Column(
+                        children: [
+                          Text(product.nom),
+                          Image.network(product.image, width: 200, height: 200),
+                          Spacer(),
+                          Text("${product.prix}", style: TextStyle(fontWeight: FontWeight.bold),)
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              })
           ),
 
-//quentin@0Fc.tech
+          Expanded(
 
+            child: Center(child: InkWell(child: TextButton(onPressed: ()=> context.go('/list'), child: Text("Voir la liste de tous les articles.")))),
+          ),
         ],
       ),
-    );
+
+
+      );
   }
 }

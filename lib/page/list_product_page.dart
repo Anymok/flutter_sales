@@ -17,7 +17,7 @@ class ListProductPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text("E-Commerce"),
         actions: [ IconButton(
-            onPressed: ()=> context.go('/home/list/cart'),
+            onPressed: ()=> context.go('/list/cart'),
             icon: const Icon(Icons.shopping_cart_outlined))
         ],
       ),
@@ -49,13 +49,13 @@ class ListProductBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Container(
       child: ListView.builder(
         itemCount: lsProducts.length,
         itemBuilder: (context, int index) {
           final Products product =lsProducts[index];
           return Card(
-            child: InkWell( onTap: () => context.go('/home/list/detail', extra: product),
+            child: InkWell( onTap: () => context.go('/list/detail', extra: product),
                 child: ListTile(
                   leading: Hero(
                       tag:product.id,
